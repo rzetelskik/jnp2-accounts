@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: accounts
+  namespace: jnp2
+  labels:
+    app: jnp2
+spec:
+  selector:
+    matchLabels:
+      app: jnp2
+      tier: backend
+      component: accounts
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: jnp2
+        tier: backend
+        component: accounts
+    spec:
+      containers:
+        - image: rzetelskik/jnp2-accounts:latest
+          name: accounts
+          envFrom:
+            - configMapRef:
+                name: mariadb-accounts-config
+          env:
+            - name: DB_PASSWORD_ACCOUNTS
+              valueFrom:
+                secretKeyRef:
+                  name: mariadb-accounts
+                  key: root-password
+          ports:
+            - containerPort: 3000
+              name: http
