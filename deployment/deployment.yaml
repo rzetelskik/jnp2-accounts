@@ -27,13 +27,13 @@ spec:
           name: accounts
           envFrom:
             - configMapRef:
-                name: mariadb-accounts-config
+                name: mysql-accounts-config
           env:
             - name: DB_PASSWORD_ACCOUNTS
               valueFrom:
                 secretKeyRef:
-                  name: mariadb-accounts
+                  name: mysql-accounts
                   key: root-password
           ports:
-            - containerPort: 3000
+            - containerPort: 80
               name: http

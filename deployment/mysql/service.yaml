@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mariadb-accounts
+  name: mysql-accounts
   namespace: jnp2
   labels:
     app: jnp2
     tier: backend
-    component: mariadb-accounts
+    component: mysql-accounts
 spec:
   type: ClusterIP
   ports:
@@ -16,4 +16,4 @@ spec:
   selector:
     app: jnp2
     tier: backend
-    component: mariadb-accounts
+    component: mysql-accounts
