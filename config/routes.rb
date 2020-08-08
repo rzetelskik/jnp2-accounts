@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  get 'accounts/test', action: :test, controller: 'test'
+  scope :accounts do
+    post 'authenticate', to: 'users#authenticate'
+    get 'authorized', to: 'users#authorized'
+  end
 end
