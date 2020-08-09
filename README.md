@@ -1,24 +1,77 @@
-# README
+# Accounts API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Authenticate
+### Request
+- type: POST
+- path: /authenticate/
+- content: JSON
+- request body:
+  ```
+  {
+    "username": string,
+    "password": string
+  }
+  ```
+  
+### Response:
+- content: JSON
+- codes:
+  - 200 Ok - success
+  - 400 Bad Request - authentication failed
+- content on success:
+  ```
+  {
+    "auth_token": string
+  }
+  ```
+  
+## Authorized
+### Request
+- type: POST
+- path: /authorized/
+- content: JSON
+- request body:
+  ```
+  {
+    "auth_token": string
+  }
+  ```
+  
+### Response
+- content: JSON
+- codes:
+  - 200 Ok - success
+  - 401 Unathorized - unauthorised
+  - 400 Bad Request - params missing
+- content on success:
+  ```
+  {
+    "username": string
+  }
+  ```
+  
+## Register
+### Request
+- type: POST
+- path: /register/
+- content: JSON
+- request body:
+  ```
+  {
+    "username": string,
+    "password": string,
+    "password_confirmitation": string
+  }
+  ```
+  
+### Response
+- content: JSON
+- codes:
+  - 200 Ok - success
+  - 400 Bad Request - params missing or incorrect
+- content on success:
+  ```
+  {
+    "auth_token": string
+  }
+  ```
