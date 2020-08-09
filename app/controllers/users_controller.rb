@@ -16,4 +16,13 @@ class UsersController < ApplicationController
       render_error(command.errors.full_messages.first, :unauthorized)
     end
   end
+
+  def register
+    command = Register.call(params.require(:username), params.require(:password), params.require(:password_confirmation))
+    if command.success?
+      render_success({ auth_token: command.result })
+    else
+      render_error(command.errors.full_messages.first, :bad_request)
+    end
+  end
 end
