@@ -22,6 +22,19 @@ spec:
         tier: backend
         component: accounts
     spec:
+      initContainers:
+        - image: rzetelskik/jnp2-accounts:latest
+          name: init-db
+          command: ['/bin/bash', '-c', 'bundle exec rake db:prepare']
+          envFrom:
+            - configMapRef:
+                name: mysql-accounts-config
+          env:
+            - name: DB_PASSWORD_ACCOUNTS
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-accounts
+                  key: root-password
       containers:
         - image: rzetelskik/jnp2-accounts:latest
           name: accounts
