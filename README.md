@@ -60,7 +60,7 @@
   {
     "username": string,
     "password": string,
-    "password_confirmitation": string
+    "password_confirmation": string
   }
   ```
   
