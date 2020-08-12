@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def authorized
     command = Authorized.call(params.require(:auth_token))
     if command.success?
-      render_success({ username: command.result.username })
+      render_success(command.result.slice(:id, :username))
     else
       render_error(command.errors.full_messages.first, :unauthorized)
     end

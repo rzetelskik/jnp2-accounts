@@ -25,7 +25,7 @@ spec:
       initContainers:
         - image: rzetelskik/jnp2-accounts:latest
           name: init-db
-          command: ['/bin/bash', '-c', 'bundle exec rake db:prepare']
+          command: ['/bin/bash', '-c', 'bundle exec rake db:create && bundle exec rake db:migrate']
           envFrom:
             - configMapRef:
                 name: mysql-accounts-config
