@@ -8,10 +8,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def authorized
-    command = Authorized.call(params.require(:auth_token))
+  def authorize
+    command = Authorize.call(request.headers)
     if command.success?
-      render_success(command.result.slice(:id, :username))
+      response.set_header("Authenticated", command.result.id)
+      render_no_content
     else
       render_error(command.errors.full_messages.first, :unauthorized)
     end

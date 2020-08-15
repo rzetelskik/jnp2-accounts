@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  post 'authenticate', to: 'users#authenticate'
-  get 'authorized', to: 'users#authorized'
-  post 'register', to: 'users#register'
+  scope :accounts do
+    post 'authenticate', to: 'users#authenticate'
+    post 'register', to: 'users#register'
+  end
+  get 'authorize', to: 'users#authorize'
 end
