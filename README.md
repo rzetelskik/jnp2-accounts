@@ -3,7 +3,7 @@
 ## Authenticate
 ### Request
 - type: POST
-- path: /authenticate/
+- path: /accounts/authenticate/
 - content: JSON
 - request body:
   ```
@@ -28,13 +28,11 @@
 ## Authorized
 ### Request
 - type: POST
-- path: /authorized/
+- path: /authorize/
 - content: JSON
-- request body:
+- additional headers:
   ```
-  {
-    "auth_token": string
-  }
+  Authorization:Token
   ```
   
 ### Response
@@ -43,17 +41,15 @@
   - 200 Ok - success
   - 401 Unathorized - unauthorised
   - 400 Bad Request - params missing
-- content on success:
+- additional headers:
   ```
-  {
-    "username": string
-  }
+  Authenticated:UserId
   ```
   
 ## Register
 ### Request
 - type: POST
-- path: /register/
+- path: /accounts/register/
 - content: JSON
 - request body:
   ```
