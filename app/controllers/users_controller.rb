@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def authorize
     command = Authorize.call(request.headers)
     if command.success?
-      response.set_header("Authenticated", command.result.id)
+      response.set_header("Authenticated", command.result.username)
       render_no_content
     else
       render_error(command.errors.full_messages.first, :unauthorized)

@@ -14,7 +14,7 @@ class Authorize
   attr_reader :headers
 
   def user
-    @user ||= User.find(decoded_auth_token[:user_id]) if decoded_auth_token
+    @user ||= User.find_by_username(decoded_auth_token[:username]) if decoded_auth_token
     @user || errors.add(:token, 'Invalid token') && nil
   end
 
