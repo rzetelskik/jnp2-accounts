@@ -43,6 +43,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: mysql-accounts-config
+            - configMapRef:
+                name: accounts-config
           env:
             - name: DB_PASSWORD_ACCOUNTS
               valueFrom:
@@ -55,6 +57,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: mysql-accounts-config
+            - configMapRef:
+                name: accounts-config
           env:
             - name: DB_PASSWORD_ACCOUNTS
               valueFrom:
